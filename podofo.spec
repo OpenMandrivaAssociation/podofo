@@ -1,9 +1,11 @@
 %define	major	0
-%define libname	%mklibname lib%{name} %{major}
-%define	develname	%mklibname	lib%{name} -d	
+%define libname	%mklibname %{name} %{major}
+%define	develname	%mklibname	%{name} -d	
+%define badlibname	%mklibname lib%{name} %{major}
+%define	baddevelname	%mklibname	lib%{name} -d	
 Name:		podofo
 Version:	0.7.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Tools and libraries to work with the PDF file format
 Group:		Publishing
 License:	GPL and LGPL
@@ -41,6 +43,7 @@ your own application using PoDoFo.
 Summary:	Runtime library for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
+Obsoletes:	%{badlibname} < %{version}-%{release}
 
 %description -n %{libname}
 Runtime library for %{name}.
@@ -52,6 +55,7 @@ Group:		Development/C
 License:	LGPLv2+
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel
+Obsoletes:	%{baddevelname} < %{version}-%{release}
 
 %description -n %{develname}
 Development files and documentation for the %{name} library.
