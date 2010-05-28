@@ -4,14 +4,13 @@
 %define badlibname	%mklibname lib%{name} %{major}
 %define	baddevelname	%mklibname	lib%{name} -d	
 Name:		podofo
-Version:	0.7.0
-Release:	%mkrel 2
+Version:	0.8.0
+Release:	%mkrel 1
 Summary:	Tools and libraries to work with the PDF file format
 Group:		Publishing
 License:	GPL and LGPL
 URL:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		%{name}-0.7.0-strings-fix.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires:	cmake 
@@ -63,7 +62,6 @@ Development files and documentation for the %{name} library.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %cmake -DPODOFO_BUILD_SHARED=1 \
