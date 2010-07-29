@@ -4,7 +4,7 @@
 %define badlibname	%mklibname lib%{name} %{major}
 %define	baddevelname	%mklibname	lib%{name} -d	
 Name:		podofo
-Version:	0.8.0
+Version:	0.8.1
 Release:	%mkrel 1
 Summary:	Tools and libraries to work with the PDF file format
 Group:		Publishing
