@@ -5,14 +5,13 @@
 %define	baddevelname	%mklibname	lib%{name} -d
 
 Name:		podofo
-Version:	0.8.1
-Release:	%mkrel 3
+Version:	0.8.2
+Release:	%mkrel 1
 Summary:	Tools and libraries to work with the PDF file format
 Group:		Publishing
 License:	GPL and LGPL
 URL:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		podofo-0.8.1-fix-compilation.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires:	cmake 
@@ -55,7 +54,7 @@ Summary:	Development files for %{name} library
 Group:		Development/C
 License:	LGPLv2+
 Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel
+Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{baddevelname} < %{version}-%{release}
 
 %description -n %{develname}
@@ -64,7 +63,6 @@ Development files and documentation for the %{name} library.
 
 %prep
 %setup -q
-%patch0 -p0 -b .fix-compilation
 
 %build
 %cmake -DPODOFO_BUILD_SHARED=1 \
@@ -84,13 +82,10 @@ doxygen ../
 
 %install
 rm -rf %{buildroot}
-cd build
-%makeinstall_std DESTDIR=%{buildroot}
-
+%makeinstall_std -C build
 
 %clean
 rm -rf %{buildroot}
-
 
 %files
 %defattr(-,root,root,-)
@@ -100,7 +95,7 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING.LIB ChangeLog FAQ.html README.html TODO
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root,-)
