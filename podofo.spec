@@ -5,8 +5,8 @@
 %define	baddevelname	%mklibname	lib%{name} -d
 
 Name:		podofo
-Version:	0.8.4
-Release:	%mkrel 1
+Version:	0.9.1
+Release:	1
 Summary:	Tools and libraries to work with the PDF file format
 Group:		Publishing
 License:	GPL and LGPL
@@ -91,6 +91,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc COPYING
 %{_bindir}/%{name}*
+%doc %{_mandir}/man1/*
 
 %files -n %{libname}
 %defattr(-,root,root,-)
