@@ -6,22 +6,22 @@
 
 Name:		podofo
 Version:	0.9.1
-Release:	1
+Release:	2
 Summary:	Tools and libraries to work with the PDF file format
 Group:		Publishing
 License:	GPL and LGPL
 URL:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
+Patch0:		podofo-0.9.1-gcc4.7.patch
 
 BuildRequires:	cmake 
-BuildRequires:	zlib-devel 
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	jpeg-devel 
 BuildRequires:	tiff-devel 
 BuildRequires:	freetype-devel 
-BuildRequires:	fontconfig-devel
-BuildRequires:	cppunit-devel 
-BuildRequires:	lua-devel 
+BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:	pkgconfig(cppunit)
+BuildRequires:	pkgconfig(lua)
 BuildRequires:	doxygen
 
 
@@ -63,6 +63,7 @@ Development files and documentation for the %{name} library.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %cmake -DPODOFO_BUILD_SHARED=1 \
@@ -76,16 +77,11 @@ Development files and documentation for the %{name} library.
 # build the docs
 doxygen ../
 
-# set timestamps on generated files to some constant
-#find ../doc/html -exec touch -r %{Source0} {} \;
 
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
-%clean
-rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
@@ -103,3 +99,36 @@ rm -rf %{buildroot}
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/*.so
+
+
+%changelog
+* Mon Sep 26 2011 Matthew Dawkins <mattydaw@mandriva.org> 0.9.1-1
++ Revision: 701226
+- new version 0.9.1
+
+* Tue Oct 26 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.8.4-1mdv2011.0
++ Revision: 589450
+- update to 0.8.4
+
+* Wed Aug 25 2010 Funda Wang <fwang@mandriva.org> 0.8.2-1mdv2011.0
++ Revision: 573150
+- new version 0.8.2
+
+* Fri Jul 30 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.8.1-3mdv2011.0
++ Revision: 563233
+- add patch from upstream SVN to fix compilation
+- update to 0.8.1
+
+* Fri May 28 2010 Juan Luis Baptiste <juancho@mandriva.org> 0.8.0-1mdv2011.0
++ Revision: 546552
+- Updated to 0.8.0 and removed patch to fix fprint strings.
+
+* Tue Apr 20 2010 Tomas Kindl <supp@mandriva.org> 0.7.0-2mdv2010.1
++ Revision: 537257
+- fix really really bad libname/develname and obsolete it...
+
+* Mon Apr 19 2010 Tomas Kindl <supp@mandriva.org> 0.7.0-1mdv2010.1
++ Revision: 536544
+- initial PoDoFo import
+- create podofo
+

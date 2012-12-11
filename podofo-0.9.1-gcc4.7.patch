@@ -1,0 +1,12 @@
+diff -up test/unit/TestUtils.cpp.fix test/unit/TestUtils.cpp
+--- test/unit/TestUtils.cpp.unistd	
++++ test/unit/TestUtils.cpp	
+
+@@ -23,6 +23,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ #if defined(_WIN32) || defined(_WIN64)
+ #include <windows.h>
