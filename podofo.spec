@@ -11,6 +11,7 @@ License:	GPL and LGPL
 Url:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch1:		podofo-0.9.2-lua52.patch
+Patch2:		podofo-0.9.2-freetype2.5.1.patch
 BuildRequires:	cmake
 BuildRequires:	doxygen
 BuildRequires:	jpeg-devel
