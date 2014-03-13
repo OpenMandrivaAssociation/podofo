@@ -85,9 +85,10 @@ Development files and documentation for the %{name} library.
 
 %build
 %cmake -DPODOFO_BUILD_SHARED=1 \
-%ifarch x86_64
--DWANT_LIB64=1
+%if "%{_lib}" == "lib64"
+-DWANT_LIB64=1 \
 %endif
+
 
 %make
 
