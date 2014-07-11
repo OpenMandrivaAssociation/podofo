@@ -5,7 +5,7 @@
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
 Version:	0.9.2
-Release:	7
+Release:	8
 Group:		Publishing
 License:	GPL and LGPL
 Url:		http://podofo.sourceforge.net
