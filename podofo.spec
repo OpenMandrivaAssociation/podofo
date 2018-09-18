@@ -10,6 +10,7 @@ Group:		Publishing
 License:	GPL and LGPL
 Url:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch1:		podofo-cmake-3.12.patch
 BuildRequires:	cmake
 BuildRequires:	doxygen
 BuildRequires:	jpeg-devel
