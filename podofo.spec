@@ -1,4 +1,4 @@
-%define major 0.9.1
+%define major 0.9.6
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 
@@ -74,6 +74,7 @@ Development files and documentation for the %{name} library.
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/libpodofo.so
+%{_libdir}/pkgconfig/*.pc
 
 #----------------------------------------------------------------------------
 
