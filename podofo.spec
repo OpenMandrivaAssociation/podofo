@@ -4,14 +4,12 @@
 
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
-Version:	0.9.2
-Release:	10
+Version:	0.9.6
+Release:	1
 Group:		Publishing
 License:	GPL and LGPL
 Url:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch1:		podofo-0.9.2-lua52.patch
-Patch2:		podofo-0.9.2-freetype2.5.1.patch
 BuildRequires:	cmake
 BuildRequires:	doxygen
 BuildRequires:	jpeg-devel
@@ -84,6 +82,8 @@ Development files and documentation for the %{name} library.
 %apply_patches
 
 %build
+export CXX='%__cxx -std=c++11'
+
 %cmake -DPODOFO_BUILD_SHARED=1 \
 %if "%{_lib}" == "lib64"
 -DWANT_LIB64=1 \
