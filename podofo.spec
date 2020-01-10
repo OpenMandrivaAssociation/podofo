@@ -81,7 +81,7 @@ Development files and documentation for the %{name} library.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 export CXX='%__cxx -std=c++11'
