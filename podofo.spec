@@ -1,17 +1,17 @@
-%define major 0.9.6
+%define major 0.9.7
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
-Version:	0.9.6
-Release:	2
+Version:	0.9.7
+Release:	1
 Group:		Publishing
 License:	GPL and LGPL
 Url:		http://podofo.sourceforge.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch1:		podofo-cmake-3.12.patch
 BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:	doxygen
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(fontconfig)
@@ -23,6 +23,9 @@ BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Widgets)
 
 %description
 PoDoFo is a library to work with the PDF file format. The name comes from
@@ -80,23 +83,21 @@ Development files and documentation for the %{name} library.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%autopatch -p1
-
-%build
-export CXX='%__cxx -std=c++11'
+%autosetup -p1
+export CXX='%__cxx -std=c++17'
 
 %cmake -DPODOFO_BUILD_SHARED=1 \
 %if "%{_lib}" == "lib64"
 -DWANT_LIB64=1 \
 %endif
+	-G Ninja
 
-
-%make
+%build
+%ninja_build -C build
 
 # build the docs
-doxygen ../
+doxygen
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 
