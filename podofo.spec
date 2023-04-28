@@ -1,11 +1,12 @@
-%define major 0.9.7
-%define libname %mklibname %{name} %{major}
+%define major %{version}
+%define oldlibname %mklibname %{name} 0.9.7
+%define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
-Version:	0.9.7
-Release:	2
+Version:	0.9.8
+Release:	1
 Group:		Publishing
 License:	GPL and LGPL
 Url:		http://podofo.sourceforge.net
@@ -54,6 +55,7 @@ License:	LGPLv2+
 # We had wrong major used for library package
 Obsoletes:	%{_lib}podofo0 < 0.9.2
 Conflicts:	%{_lib}podofo0 < 0.9.2
+%rename %{oldlibname}
 
 %description -n %{libname}
 Runtime library for %{name}.
