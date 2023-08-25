@@ -1,16 +1,17 @@
-%define major %{version}
+%define major 2
 %define oldlibname %mklibname %{name} 0.9.7
 %define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
-Version:	0.9.8
+Version:	0.10.1
 Release:	1
 Group:		Publishing
 License:	GPL and LGPL
-Url:		http://podofo.sourceforge.net
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Url:		http://podofo.github.io/
+Source0:	https://github.com/podofo/podofo/archive/refs/tags/%{version}.tar.gz
+Patch0:		podofo-0.10.1-clang16.patch
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	doxygen
@@ -41,11 +42,6 @@ viewer). Besides parsing PoDoFo includes also very simple classes to create
 your own PDF files. All classes are documented so it is easy to start writing
 your own application using PoDoFo.
 
-%files
-%doc COPYING
-%{_bindir}/%{name}*
-%doc %{_mandir}/man1/%{name}*.1*
-
 #----------------------------------------------------------------------------
 
 %package -n %{libname}
@@ -56,13 +52,16 @@ License:	LGPLv2+
 Obsoletes:	%{_lib}podofo0 < 0.9.2
 Conflicts:	%{_lib}podofo0 < 0.9.2
 %rename %{oldlibname}
+# There used to be a podofo binary; that was removed
+# in 0.10.x
+Obsoletes:	%{name} < %{EVRD}
 
 %description -n %{libname}
 Runtime library for %{name}.
 
 %files -n %{libname}
-%doc AUTHORS COPYING.LIB ChangeLog FAQ.html README.html TODO
 %{_libdir}/libpodofo.so.%{major}*
+%{_libdir}/libpodofo.so.%{version}
 
 #----------------------------------------------------------------------------
 
@@ -81,16 +80,18 @@ Development files and documentation for the %{name} library.
 %{_includedir}/%{name}
 %{_libdir}/libpodofo.so
 %{_libdir}/pkgconfig/*.pc
+%dir %{_datadir}/podofo
+%{_datadir}/podofo/*.cmake
 
 #----------------------------------------------------------------------------
 
 %prep
 %autosetup -p1
-export CXX='%__cxx -std=c++17'
+export CXX='%__cxx -std=c++20'
 
-%cmake -DPODOFO_BUILD_SHARED=1 \
+%cmake \
 %if "%{_lib}" == "lib64"
--DWANT_LIB64=1 \
+	-DWANT_LIB64=1 \
 %endif
 	-G Ninja
 
@@ -102,4 +103,3 @@ doxygen
 
 %install
 %ninja_install -C build
-

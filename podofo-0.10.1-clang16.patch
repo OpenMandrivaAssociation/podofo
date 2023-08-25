@@ -1,0 +1,12 @@
+diff -up podofo-0.10.1/src/podofo/private/charconv_compat.h.omv~ podofo-0.10.1/src/podofo/private/charconv_compat.h
+--- podofo-0.10.1/src/podofo/private/charconv_compat.h.omv~	2023-08-04 14:28:23.850385677 +0200
++++ podofo-0.10.1/src/podofo/private/charconv_compat.h	2023-08-04 14:29:11.482849049 +0200
+@@ -7,7 +7,7 @@
+ #if defined(__GNUC__) && !defined(__clang__) && __GNUC__ < 10
+ #define WANT_CHARS_FORMAT
+ #endif
+-#if (defined(__GNUC__) && __GNUC__ < 11) || defined(__clang__)
++#if (defined(__GNUC__) && __GNUC__ < 11) //|| defined(__clang__)
+ #define WANT_FROM_CHARS
+ #endif
+ 
