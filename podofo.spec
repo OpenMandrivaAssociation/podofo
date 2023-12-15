@@ -5,7 +5,7 @@
 
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
-Version:	0.10.1
+Version:	0.10.3
 Release:	1
 Group:		Publishing
 License:	GPL and LGPL
