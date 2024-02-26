@@ -6,7 +6,7 @@
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
 Version:	0.10.3
-Release:	1
+Release:	2
 Group:		Publishing
 License:	GPL and LGPL
 Url:		http://podofo.github.io/
@@ -49,6 +49,8 @@ your own application using PoDoFo.
 Summary:	Runtime library for %{name}
 Group:		System/Libraries
 License:	LGPLv2+
+# loads legacy provider which is in openssl
+Requires:	openssl
 # We had wrong major used for library package
 Obsoletes:	%{_lib}podofo0 < 0.9.2
 Conflicts:	%{_lib}podofo0 < 0.9.2
