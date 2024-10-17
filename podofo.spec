@@ -9,7 +9,7 @@ Version:	0.10.3
 Release:	2
 Group:		Publishing
 License:	GPL and LGPL
-Url:		http://podofo.github.io/
+Url:		https://podofo.github.io/
 Source0:	https://github.com/podofo/podofo/archive/refs/tags/%{version}.tar.gz
 Patch0:		podofo-0.10.1-clang16.patch
 BuildRequires:	cmake
