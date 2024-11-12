@@ -11,7 +11,6 @@ Group:		Publishing
 License:	GPL and LGPL
 Url:		https://podofo.github.io/
 Source0:	https://github.com/podofo/podofo/archive/refs/tags/%{version}.tar.gz
-Patch0:		podofo-0.10.1-clang16.patch
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	doxygen
