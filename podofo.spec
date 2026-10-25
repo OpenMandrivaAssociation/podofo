@@ -1,11 +1,11 @@
-%define major 2
+%define major 4
 %define oldlibname %mklibname %{name} 0.9.7
 %define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
 Summary:	Tools and libraries to work with the PDF file format
 Name:		podofo
-Version:	1.1.1
+Version:	1.1.2
 Release:	1
 Group:		Publishing
 License:	GPL and LGPL
@@ -71,7 +71,7 @@ Runtime library for %{name}.
 Summary:	Development files for %{name} library
 Group:		Development/C
 License:	LGPLv2+
-Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
