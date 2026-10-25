@@ -29,6 +29,10 @@ BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5Gui)
 BuildRequires:	cmake(Qt5Widgets)
 
+# find_dependency(LCMS2) is inside if(PODOFO_BUILD_STATIC), which is false
+# for the shared library. cmake.req still emits it, and nothing provides it.
+%global __requires_exclude %{?__requires_exclude:%{__requires_exclude}|}^\\(cmake\\(lcms2\\) or cmake\\(LCMS2\\)\\)$
+
 %description
 PoDoFo is a library to work with the PDF file format. The name comes from
 the first letter of PDF (Portable Document Format). A few tools to work
@@ -82,8 +86,7 @@ Development files and documentation for the %{name} library.
 %{_includedir}/%{name}
 %{_libdir}/libpodofo.so
 %{_libdir}/pkgconfig/*.pc
-%dir %{_datadir}/podofo
-%{_datadir}/podofo/*.cmake
+%{_libdir}/cmake/podofo/
 
 #----------------------------------------------------------------------------
 
@@ -100,8 +103,10 @@ export CXX='%__cxx -std=c++20'
 %build
 %ninja_build -C build
 
-# build the docs
-doxygen
+# Doxyfile is generated in the build tree. HTML lands in build/doxygen/documentation.
+doxygen build/Doxyfile
+mkdir -p doc
+cp -a build/doxygen/documentation doc/html
 
 %install
 %ninja_install -C build
